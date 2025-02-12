@@ -1,6 +1,6 @@
 class SCR_StealFromRegister : ScriptedUserAction
 {
-	KOTH_PlayerEventsGameModeComponent playerEventComp;
+	protected KOTH_PlayerEventsGameModeComponent playerEventComp;
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
 	{
 		
@@ -24,14 +24,12 @@ class SCR_StealFromRegister : ScriptedUserAction
 	
 	override bool CanBePerformedScript(IEntity user)
 	{
-		
-		// Disable input if user has already opened a register since his last death
 		if(playerEventComp == null)
 		{
 			return true;
 		}
-		bool isRegisterAvailable = playerEventComp.GetHasUserOpenedARegister();
-		Print("Can register be opened : " + isRegisterAvailable);
+		// Disable input if user has already opened a register since his last death
+		bool isRegisterAvailable = !playerEventComp.GetHasUserOpenedARegister();
 		return isRegisterAvailable;
 	}
 	
