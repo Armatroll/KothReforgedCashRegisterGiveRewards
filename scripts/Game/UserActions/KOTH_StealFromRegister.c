@@ -1,6 +1,6 @@
 class SCR_StealFromRegister : ScriptedUserAction
 {
-	const int BONUS_STEAL_FROM_REGISTER = 100;
+	KOTH_PlayerEventsGameModeComponent playerEventComp;
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
 	{
 		
@@ -11,8 +11,10 @@ class SCR_StealFromRegister : ScriptedUserAction
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 		if (playerId == 0)
 			return;
-		
-		KOTH_PlayerEventsGameModeComponent playerEventComp = KOTH_PlayerEventsGameModeComponent.Cast(GetGame().GetGameMode().FindComponent(KOTH_PlayerEventsGameModeComponent)); 
+		if(playerEventComp == null)
+		{
+			playerEventComp = KOTH_PlayerEventsGameModeComponent.Cast(GetGame().GetGameMode().FindComponent(KOTH_PlayerEventsGameModeComponent)); 			
+		}
 		playerEventComp.HandleStealFromRegister(playerId);
 	}
 	override bool CanBeShownScript(IEntity user)
@@ -22,19 +24,16 @@ class SCR_StealFromRegister : ScriptedUserAction
 	
 	override bool CanBePerformedScript(IEntity user)
 	{
-		return true;
-	}
-	void HandleStealFromRegister(int playerId)
-	{
 		
-		// NotificationHelper tools
-		/*
-		KOTH_SCR_PlayerProfileComponent profileComp = KOTH_SCR_PlayerProfileComponent.Cast(m_playerManager.GetPlayerController(playerId).FindComponent(KOTH_SCR_PlayerProfileComponent));
-		 profile related interactions tools
-		KOTH_PlayerProfileJson profile = m_kothBackendApi.m_CurrentProfileList.Get(playerUID);
-		//RegisterInteraction rInteraction = new RegisterInteraction();
-		profile.AddXp(BONUS_STEAL_FROM_REGISTER);
-		profile.AddMoney(BONUS_STEAL_FROM_REGISTER);
-		profileComp.FlushToilet("Stole from the register : 100$/xp");*/
+		// Disable input if user has already opened a register since his last death
+		if(playerEventComp == null)
+		{
+			return true;
+		}
+		bool isRegisterAvailable = playerEventComp.GetHasUserOpenedARegister();
+		Print("Can register be opened : " + isRegisterAvailable);
+		return isRegisterAvailable;
 	}
+	
+
 }

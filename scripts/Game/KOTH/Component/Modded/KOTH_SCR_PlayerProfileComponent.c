@@ -1,6 +1,10 @@
 modded class KOTH_SCR_PlayerProfileComponent : ScriptComponent
 {
 	protected bool m_hasStoleFromARegister = false;
+	bool GetHasPlayerOpenedARegister()
+	{
+		return m_hasStoleFromARegister;
+	}
 	void StealFromRegister(string bonus)
 	{
 		if (m_hasStoleFromARegister)
@@ -19,5 +23,9 @@ modded class KOTH_SCR_PlayerProfileComponent : ScriptComponent
 				kothHud.NotifStealFromRegister(bonus);
 			}
 		}
+	}
+	void ResetHasPlayerOpenedARegister()
+	{
+		m_hasStoleFromARegister = false;
 	}
 }
