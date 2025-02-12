@@ -1,0 +1,29 @@
+GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  ActionsManagerComponent "{6499212F23BE9CED}" {
+   ActionContexts {
+    UserActionContext "{6499212CAF78F2B3}" {
+     UIInfo UIInfo "{64992124132F38B6}" {
+      Name "Steal"
+      Description "Steal"
+     }
+     ContextName "Steal"
+     Position PointInfo "{6499212C1CBB5DED}" {
+      Offset -0.15 0.3 0.165
+     }
+     Radius 0.7
+    }
+   }
+   additionalActions {
+    SCR_StealFromRegister "{649921287F9586F8}" {
+     ParentContextList {
+      "Steal"
+     }
+     VisibilityRange 1
+    }
+   }
+   AllowCrossHierarchy 1
+  }
+ }
+}
