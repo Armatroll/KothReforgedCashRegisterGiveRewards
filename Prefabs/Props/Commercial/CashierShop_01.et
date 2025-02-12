@@ -4,7 +4,7 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
   ActionsManagerComponent "{6499212F23BE9CED}" {
    ActionContexts {
     UserActionContext "{6499212CAF78F2B3}" {
-     UIInfo UIInfo "{64992124132F38B6}" {
+     UIInfo UIInfo "{64992138FF7ED329}" {
       Name "Steal"
       Description "Steal"
      }
@@ -19,6 +19,9 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
     SCR_StealFromRegister "{649921287F9586F8}" {
      ParentContextList {
       "Steal"
+     }
+     UIInfo UIInfo "{6499213FF9544DCD}" {
+      Name "Steal"
      }
      VisibilityRange 1
     }
