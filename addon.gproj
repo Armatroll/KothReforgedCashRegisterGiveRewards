@@ -1,0 +1,8 @@
+GameProject {
+ ID "CashRegisterGiveRewards"
+ GUID "64990B33E37ADF33"
+ TITLE "CashRegisterGiveRewards"
+ Dependencies {
+  "5E055A77849516EF" "58D0FB3206B6F859"
+ }
+}
